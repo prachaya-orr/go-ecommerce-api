@@ -36,7 +36,10 @@ CREATE TYPE "order_status" AS ENUM (
 );
 
 CREATE TABLE "users" (
-    "id" VARCHAR(7) PRIMARY KEY DEFAULT CONCAT('U', LPAD(NEXTVAL('users_id_seq') :: TEXT, 6, '0')),
+    "id" VARCHAR(7) PRIMARY KEY DEFAULT CONCAT(
+        'U',
+        LPAD(NEXTVAL('users_id_seq') :: TEXT, 6, '0')
+    ),
     "username" VARCHAR UNIQUE NOT NULL,
     "password" VARCHAR NOT NULL,
     "email" VARCHAR UNIQUE NOT NULL,
