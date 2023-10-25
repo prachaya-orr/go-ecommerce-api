@@ -1,0 +1,16 @@
+version: "3.3"
+services:
+  db:
+    image: "postgres:14.2"
+    restart: unless-stopped
+    ports:
+      - "4444:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: "go_ecommerce"
+      POSTGRES_URL: "postgresql://postgres:postgres@localhost:4444/go_ecommerce?sslmode=disable"
+
+networks:
+  default:
+    driver: bridge
