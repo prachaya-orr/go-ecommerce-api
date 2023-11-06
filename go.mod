@@ -1,4 +1,4 @@
-module eCommerce-api
+module github.com/prachaya-or/eCommerce-api
 
 go 1.21.1
 
