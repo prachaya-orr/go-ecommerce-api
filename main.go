@@ -4,6 +4,7 @@ import (
 	"os"
 
 	"github.com/prachaya-or/eCommerce-api/config"
+	"github.com/prachaya-or/eCommerce-api/modules/servers"
 	"github.com/prachaya-or/eCommerce-api/pkg/databases"
 )
 
@@ -20,4 +21,6 @@ func main() {
 
 	db := databases.DbConnect(cfg.Db())
 	defer db.Close()
+
+	servers.NewServer(cfg, db).Start()
 }
