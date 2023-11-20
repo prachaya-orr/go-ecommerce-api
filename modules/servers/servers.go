@@ -41,6 +41,11 @@ func (s *server) Start() {
 	// Middlewares
 
 	// Modules
+	v1 := s.app.Group("v1")
+
+	modules := InitModule(v1, s)
+
+	modules.MonitorModule()
 
 	// Graceful shutdown
 	c := make(chan os.Signal, 1)
