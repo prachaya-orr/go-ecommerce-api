@@ -183,7 +183,6 @@ type db struct {
 
 func (c *config) Db() IDbConfig {
 	return c.db
-
 }
 
 func (d *db) Url() string {
@@ -213,8 +212,8 @@ type jwt struct {
 	adminKey         string
 	secretKey        string
 	apiKey           string
-	accessExpiresAt  int
-	refreshExpiresAt int
+	accessExpiresAt  int //sec
+	refreshExpiresAt int //sec
 }
 
 func (c *config) Jwt() IJwtConfig {
