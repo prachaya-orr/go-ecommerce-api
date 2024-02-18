@@ -40,6 +40,7 @@ func (s *server) Start() {
 
 	// Middlewares
 	middlewares := InitMiddlewares(s)
+	s.app.Use(middlewares.Logger())
 	s.app.Use(middlewares.Cors())
 
 	// Modules
@@ -48,6 +49,8 @@ func (s *server) Start() {
 	modules := InitModule(v1, s, middlewares)
 
 	modules.MonitorModule()
+
+	s.app.Use(middlewares.RouterCheck())
 
 	// Graceful shutdown
 	c := make(chan os.Signal, 1)
