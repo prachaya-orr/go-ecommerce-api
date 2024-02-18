@@ -41,7 +41,7 @@ func (s *server) Start() {
 	// Middlewares
 
 	// Modules
-	v1 := s.app.Group("v1")
+	v1 := s.app.Group("ecommerce-api/v1")
 
 	modules := InitModule(v1, s)
 
