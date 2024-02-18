@@ -1,6 +1,9 @@
 package entities
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"github.com/gofiber/fiber/v2"
+	"github.com/prachaya-or/eCommerce-api/pkg/logger"
+)
 
 type IResponse interface {
 	Success(code int, data any) IResponse
@@ -30,6 +33,9 @@ func NewResponse(c *fiber.Ctx) IResponse {
 func (r *Response) Success(code int, data any) IResponse {
 	r.StatusCode = code
 	r.Data = data
+
+	logger.InitLogger(r.Context, &r.Data).Print().Save()
+
 	return r
 }
 func (r *Response) Error(code int, traceId, msg string) IResponse {
@@ -39,6 +45,9 @@ func (r *Response) Error(code int, traceId, msg string) IResponse {
 		Msg:     msg,
 	}
 	r.IsError = true
+
+	logger.InitLogger(r.Context, r.ErrorRes).Print().Save()
+
 	return r
 }
 func (r *Response) Res() error {
